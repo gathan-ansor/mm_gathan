@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetailPenjualan extends Model
 {
-    //
+   public $primaryKey = 'id';
+
+   protected $table = 'table_detail_penjualan';
+
+   protected $fillable = 
+   [
+   	'penjualan_id','barang_id','harga_jual','jumlah','sub_total'
+   ];
 }
