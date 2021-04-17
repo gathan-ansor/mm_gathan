@@ -10,7 +10,7 @@
               {{ csrf_field() }}
             <div id="method"></div>
             <div class="form-group">
-              <label for="inputKode" class="col-sm-2 control-label"> ID </label>
+              <label for="inputKode" class="col-sm-2 control-label"> Kode </label>
 
               <div class="sol-sm-10">
                 <input type="text" class="form-control" id="inputKode" placeholder="Masukkan Kode" name="kode_barang">
@@ -21,57 +21,39 @@
               <label for="inputProdukId" class="col-sm-2 control-label"> Id Produk </label>
 
               <div class="sol-sm-10">
-                <textarea class="form-control" id="inputProdukId" placeholder="Masukkan Kode" name="produk_id"></textarea>
+                <textarea class="form-control" id="inputProdukId" placeholder="Masukkan ID" name="produk_id"></textarea>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputProdukId" class="col-sm-2 control-label"> Id Produk </label>
+              <label for="inputProdukId" class="col-sm-2 control-label"> Nama Barang </label>
 
               <div class="sol-sm-10">
-                <input type="text" class="form-control" id="inputProdukId" placeholder="Masukkan Id Produk" name="produk_id">
+                <input type="text" class="form-control" id="inputNamaBarang" placeholder="Masukkan Nama Barang" name="nama_barang">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputJK" class="col-sm-2 control-label"> Jenis Kelamin </label>
+              <label for="inputUsername" class="col-sm-2 control-label"> Satuan </label>
 
               <div class="sol-sm-10">
-                <select name="jk" id="inputJK" class="select-chosen form-control" required>
-                  <option value="">-- Jenis Kelamin --</option>
-                  <option value="L">Lelaki</option>
-                  <option value="P">Perempuan</option>
-                  <option value="Jokowi">Jokowi</option>
-                </select>
+                <input type="text" class="form-control" id="inputSatuan" placeholder="Masukkan Jenis Satuan" name="satuan">
               </div>
             </div>
             
             <div class="form-group">
-              <label for="inputAgama" class="col-sm-2 control-label"> Agama </label>
+              <label for="inputUsername" class="col-sm-2 control-label"> Harga Jual </label>
 
               <div class="sol-sm-10">
-                <select name="agama" id="inputAgama" class="select-chosen form-control" required>
-                  <option value="">-- Agama --</option>
-                  <option value="Jokowi">Jokowi</option>
-                  <option value="Prabowo">Prabowo</option>
-                  <option value="Naruto">Naruto</option>
-                </select>
+                <input type="text" class="form-control" id="inputHargaBarang" placeholder="Masukkan Harga Jual" name="harga_jual">
               </div>
             </div>
             
             <div class="form-group">
-              <label for="inputUsername" class="col-sm-2 control-label"> Username </label>
+              <label for="inputsPassword" class="col-sm-2 control-label"> STOK </label>
 
               <div class="sol-sm-10">
-                <input type="text" class="form-control" id="inputUsername" placeholder="Masukkan Username" name="username">
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label for="inputsPassword" class="col-sm-2 control-label"> Password </label>
-
-              <div class="sol-sm-10">
-                <input type="text" class="form-control" id="inputPassword" placeholder="Masukkan Password" name="password">
+                <input type="text" class="form-control" id="inputStok" placeholder="Masukkan Jumlah STOK" name="stok">
               </div>
             </div>
           </div>
@@ -93,7 +75,7 @@
             <h4 class="modal-title" id="myModalLabel">Konfirmasi</h4>
           </div>
           <div class="modal-body">
-            <form action="{{ url('Klas') }}" method="post">
+            <form action="{{ url('barang') }}" method="post">
               {{ csrf_field() }}
               {{ method_field('delete') }}
               <input type="hidden" name="id_hapus" id="idHapus">

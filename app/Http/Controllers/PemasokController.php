@@ -3,82 +3,58 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\pemasok;
 
 class PemasokController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('pemasok/index');
-    }
+   	public function index(){
+   		$data['result'] = \App\pemasok::all();
+   		$lastId = pemasok::select('kode_pemasok')->orderBy('created_at', 'desc')->first();
+   		$data['kode_pemasok'] = ($lastId = null ? 'SUP000001' : sprintf('SUP%06d', substr($lastId->kode_pemasok, 3)+1));
+   		return view('pemasok/index')->with($data);
+   	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+   	public function store(Request $request){
+   		$rules = [
+   			'nama_pemasok' => 'required|max:100',
+   			'alamat' => 'required|min:5',
+   			'to_telp' => 'required|min:10'
+   		];
+   		$this->validate($request, $rules);
+   		$input = $request->all();
+   		// dd($input);
+   		$status = \App\pemasok::create($input);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+   		if($status)
+   			return redirect('pemasok')->with('success', 'Data pemasok berhasil ditambahkan');
+   		else
+   			return redirect('pemasok')->with('error', 'Data pemasok gagal ditambahkan');
+   	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+   	public function update(Request $request){
+   		$rules = [
+   			'nama_pemasok' => 'required|max:100',
+   			'alamat' => 'required|min:5',
+   			'to_telp' => 'required|min:10'
+   		];
+   		$this->validate($request, $rules);
+   		$input = $request->all();
+   		$result = \App\pemasok::where('kode_pemasok', $request->kode_pemasok)->first();
+   		$status = $result->update($input);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+   		if($status)
+   			return redirect('pemasok')->with('success', 'Data pemasok berhasil diupdate');
+   		else
+   			return redirect('pemasok')->with('error', 'Data pemasok gagal diupdate');
+   	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+   	public function destroy(Request $request){
+   		$pemasok = \App\pemasok::where('kode_pemasok', $request->id_hapus)->first();
+   		$status = $pemasok->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+   		if($status)
+   			return redirect('pemasok')->with('success', 'Data pemasok berhasil dihapus');
+   		else
+   			return redirect('pemasok')->with('error', 'Data pemasok gagal dihapus');
+   	}
 }

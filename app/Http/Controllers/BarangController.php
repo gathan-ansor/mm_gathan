@@ -24,7 +24,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('barang/form');
     }
 
     /**
@@ -35,8 +35,22 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $rules = [
+            //'nama' => 'required|max:100',
+            //'alamat' => 'required|max:100',
+            //'tanggal_lahir' => 'required|max:100',
+            //'jk' => 'required|max:100',
+            //'agama' => 'required|max:100',
+            //'username' => 'required|max:100',
+            //'password' => 'required|max:100',
+        ];
+        $this->validate ($request, $rules);        
+
+        $input = $request->all();
+        $status = \App\barang::create($input);
+
+        if ($status) return redirect('barang')->with('success', 'Data berhasil ditambahkan');
+        else return redirect('barang')->with('error', 'Data gagal ditambahkan');    }
 
     /**
      * Display the specified resource.
@@ -57,7 +71,8 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['result'] = \App\Klas::where('id', $id_edit)->first();
+        return view('barang/form')->with($data);
     }
 
     /**
@@ -69,7 +84,17 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            //
+        ];
+        $this->validate($request, $rules);        
+
+        $input  = $request->all();
+        $result = \App\barang::where('id', $request->id)->first();
+        $status = $result->update($input);
+
+        if ($status) return redirect('barang')->with('success', "Data berhasil diubah");
+        else return redirect('barang')->with('error', "Data gagal diubah");
     }
 
     /**
@@ -80,6 +105,10 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = \App\barang::where('id', $request->id_hapus)->first();
+        $status = $result->delete();
+
+        if($status) return redirect('barang')->with('success', "Data berhasil dihapus");
+        else return redirect('barang')->with('error', "Data gagal dihapus");
     }
 }
