@@ -11,7 +11,6 @@
             <div id="method"></div>
             <div class="form-group">
               <label for="inputKode" class="col-sm-2 control-label"> Kode </label>
-
               <div class="sol-sm-10">
                 <input type="text" class="form-control" id="inputKode" placeholder="Masukkan Kode" name="kode_barang">
               </div>
@@ -19,7 +18,6 @@
 
             <div class="form-group">
               <label for="inputProdukId" class="col-sm-2 control-label"> Id Produk </label>
-
               <div class="sol-sm-10">
                 <textarea class="form-control" id="inputProdukId" placeholder="Masukkan ID" name="produk_id"></textarea>
               </div>
@@ -27,7 +25,6 @@
 
             <div class="form-group">
               <label for="inputProdukId" class="col-sm-2 control-label"> Nama Barang </label>
-
               <div class="sol-sm-10">
                 <input type="text" class="form-control" id="inputNamaBarang" placeholder="Masukkan Nama Barang" name="nama_barang">
               </div>
@@ -35,7 +32,6 @@
 
             <div class="form-group">
               <label for="inputUsername" class="col-sm-2 control-label"> Satuan </label>
-
               <div class="sol-sm-10">
                 <input type="text" class="form-control" id="inputSatuan" placeholder="Masukkan Jenis Satuan" name="satuan">
               </div>
@@ -43,15 +39,13 @@
             
             <div class="form-group">
               <label for="inputUsername" class="col-sm-2 control-label"> Harga Jual </label>
-
               <div class="sol-sm-10">
                 <input type="text" class="form-control" id="inputHargaBarang" placeholder="Masukkan Harga Jual" name="harga_jual">
               </div>
             </div>
             
             <div class="form-group">
-              <label for="inputsPassword" class="col-sm-2 control-label"> STOK </label>
-
+              <label for="inputStok" class="col-sm-2 control-label"> STOK </label>
               <div class="sol-sm-10">
                 <input type="text" class="form-control" id="inputStok" placeholder="Masukkan Jumlah STOK" name="stok">
               </div>

@@ -32,7 +32,7 @@
 
       <div class="x_content">
         @include('templates/feedback')
-        <table id="dt-entah" class="table" style="margin-top:25px">
+        <table id="dt-entah" class="table table-hover" style="margin-top:25px">
           <thead>
             <tr>
               <th>NO</th>
@@ -58,7 +58,7 @@
                   <td>{{ $row->harga_jual }}</td>
                   <td>{{ $row->stok }}</td>
                 <td>
-                  <a href="#edit" data-toggle="modal" data-target="#formModal" data-mode="edit" 
+                  <a data-toggle="modal" data-target="#formModal" data-mode="edit" 
                   data-id="{{ $row->id }}"
                   data-kode="{{ $row->kode_barang }}"
                   data-proid="{{ $row->produk_id }}"
@@ -90,7 +90,7 @@
   <script>
   $(function(){
     $('#dt-entah').DataTable();
-    $('#formModal').on('show.bs.modal',function(event){
+    $('#formModal').on('show.bs.modal', function(event){
       var button = $(event.relatedTarget);
       var id = button.data('id');
       var kode = button.data('kode_barang');

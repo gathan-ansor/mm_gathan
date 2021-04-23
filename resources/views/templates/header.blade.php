@@ -80,6 +80,7 @@
                     <ul class="nav child_menu">
                       <li><a href="general_elements.html">Penjualan</a></li>
                       <li><a href="{{ url('pembelian') }}">Pembelian</a></li>
+                      <li><a href="{{ url('tarik') }}">Penarikan Barang</a></li>
                     </ul>
                   </li>
                 </ul>

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\pemasok;
+use App\Exports\PemasokExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class PemasokController extends Controller
 {
@@ -57,4 +60,15 @@ class PemasokController extends Controller
    		else
    			return redirect('pemasok')->with('error', 'Data pemasok gagal dihapus');
    	}
+
+      public function exportToExcel(){
+         return Excel::download(new PemasokExport, 'laporan-pemasok.xlsx');
+      }
+
+      public function cetakpdf(){
+         $tarik = pemasok::all();
+
+         $pdf = PDF::loadview('pemasok/pasokPDF',['pemasok'=>$tarik]);
+         return $pdf->download('laporan-pemasok.pdf');
+      }
 }

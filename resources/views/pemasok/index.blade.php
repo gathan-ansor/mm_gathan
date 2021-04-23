@@ -30,6 +30,10 @@
 
 			<div class="x_content">
 				@include('templates/feedback')
+				<div style="margin-bottom: 20px">
+					<button type="button" id="btn-expor-xls"><i class="fa fa-file-excel-o>" style="color: #007C00"></i>Expor Xls</button>
+					<button href="{{ url('cetakpdf') }}" type="button" id="btn-expor-pdf"><i class="fa fa-file-pdf-o>"></i>Expor PDF</button>
+				</div>
 				<table class="table table-hover" id="dt-pemasok">
 					<thead>
 						<tr>
@@ -55,7 +59,7 @@
 									<a data-toggle="modal" data-target="#formModal" data-mode="edit" data-id="{{ $row->kode_pemasok }}" data-nama="{{ $row->nama_pemasok }}" data-alamat="{{ $row->alamat }}" data-kota="{{ $row->kota }}" data-telp="{{ $row->no_telp }}">
 										<span class="fa fa-edit" style="color: blue"></span>
 									</a> &nbsp;
-									<a href="#delete" data-toggle="modal" data-target="#confModal" ata-id="{{ $row->kode_pemasok }}" data-nama="{{ $row->nama_pemasok }}">
+									<a href="#delete" data-toggle="modal" data-target="#confModal" data-id="{{ $row->kode_pemasok }}" data-nama="{{ $row->nama_pemasok }}">
 										<span class="fa fa-trash" style="color: red"></span>
 									</a>&nbsp;
 								</td>
@@ -74,6 +78,14 @@
 <script>
 	$(function(){
 		$('#dt-pemasok').DataTable();
+
+		$('#btn-expor-xls').on('click', function(e){
+			window.location = '{{ url("pemasok/export/xls") }}';
+		})
+
+		$('#btn-expor-pdf').on('click', function(e){
+			window.location = '{{ url("cetakpdf") }}';
+		})
 		$('#formModal').on('show.bs.modal', function(event){
 			var button = $(event.relatedTarget);
 			var id = button.data('id');
@@ -90,7 +102,7 @@
 				modal.find('.modal-body #inputTelp').val(telp);
 				modal.find('.modal-body #inputAlamat').val(alamat);
 				modal.find('.modal-body #inputKota').val(kota);
-				modal.find('.modal-body #method').html('{{ method_field('patch') }}');
+				modal.find('.modal-body #method').html('{{ method_field("patch") }}');
 			} else {
 				modal.find('.modal-title').text('Tambah Data Outlet')
 				modal.find('.modal-body #inputKode').val();
@@ -98,7 +110,7 @@
 				modal.find('.modal-body #inputTelp').val('');
 				modal.find('.modal-body #inputAlamat').val('');
 				modal.find('.modal-body #inputKota').val('');
-				modal.find('.modal-body #method').html("");
+				modal.find('.modal-body #method').html('');
 			}
 			$('#confModal').on('show.bs.modal', function(event){
       			var button = $(event.relatedTarget);

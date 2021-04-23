@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('pemasok') }}" class="form-horizontal" method="POST"></form>
+        <form action="{{ url('pemasok') }}" class="form-horizontal" method="POST">
         {{ csrf_field() }}
         <div id="method"></div>
         <div class="form-group row">
@@ -41,6 +41,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-success">Save</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
